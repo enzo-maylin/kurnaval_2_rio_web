@@ -1,5 +1,8 @@
 twig:
     file_name_pattern: '*.twig'
+    default_path: '%kernel.project_dir%/templates'
+    # On ajoute la ligne magique pour Bootstrap ici, au même niveau d'alignement
+    form_themes: ['bootstrap_5_layout.html.twig']
 
 when@test:
     twig:

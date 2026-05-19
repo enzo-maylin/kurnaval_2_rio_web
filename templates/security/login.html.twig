@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm my-5">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Connexion</h2>
+
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        Identifiants incorrects.
+                    </div>
+                {% endif %}
+
+                <form method="post" novalidate>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <div class="mb-3">
+                        <label for="inputUsername" class="form-label">Identifiant (Prénom)</label>
+                        <input type="text" class="form-control" id="inputUsername" name="_username" value="{{ last_username }}" required autofocus>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputPassword" class="form-label">Mot de passe</label>
+                        <input type="password" class="form-control" id="inputPassword" name="_password" required>
+                    </div>
+
+                    <div class="d-grid">
+                        <button class="btn btn-primary" type="submit">Se connecter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <p class="text-center text-muted small">Besoin d'un compte ? Contactez Enzo MAYLIN.</p>
+    </div>
+</div>
+{% endblock %}

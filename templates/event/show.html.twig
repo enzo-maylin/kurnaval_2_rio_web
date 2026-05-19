@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Event{% endblock %}
+
+{% block body %}
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="mb-4">{{ event.title }}</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="{{ path('app_event_edit', {'id': event.id}) }}" class="btn btn-warning">Éditer</a>
+            <a href="{{ path('app_event_index') }}" class="btn btn-secondary">Retour à la liste</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>Id</strong>
+                </div>
+                <div class="col-md-9">
+                    <span class="badge bg-secondary">{{ event.id }}</span>
+                </div>
+            </div>
+            <hr>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>Description</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ event.description }}
+                </div>
+            </div>
+            <hr>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>Début</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ event.startAt ? event.startAt|date('d/m/Y H:i') : '-' }}
+                </div>
+            </div>
+            <hr>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>Fin</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ event.endAt ? event.endAt|date('d/m/Y H:i') : '-' }}
+                </div>
+            </div>
+            <hr>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>Localisation</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ event.location }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        {{ include('event/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

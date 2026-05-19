@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Event{% endblock %}
+
+{% block body %}
+    <div class="mb-4">
+        <h1>Créer un nouvel événement</h1>
+        <p class="text-muted">Remplissez le formulaire ci-dessous pour ajouter un nouvel événement</p>
+    </div>
+
+    <div class="card" style="max-width: 600px;">
+        <div class="card-body">
+            {{ include('event/_form.html.twig', {'button_label': 'Créer'}) }}
+        </div>
+    </div>
+{% endblock %}

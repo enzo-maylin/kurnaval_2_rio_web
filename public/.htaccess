@@ -1,0 +1,31 @@
+# Désactive l'affichage du contenu des dossiers si index.php est absent
+Options -Indexes
+
+# Force l'encodage en UTF-8
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Détermine le "RewriteBase" automatiquement pour les sous-dossiers (ex: /kurnaval_2_rio_web/public/)
+    RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+    RewriteRule ^(.*) - [E=BASE:%1]
+
+    # Redirige les requêtes qui cherchent explicitement "index.php" vers l'URL propre
+    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    RewriteRule ^index\.php(?:/(.*))?$ %{ENV:BASE}/$1 [R=301,L]
+
+    # Si le fichier ou le dossier demandé existe physiquement, on le sert directement (CSS, images, JS...)
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # Sinon, on envoie tout le reste à index.php pour que le routeur de Symfony prenne le relais
+    RewriteRule ^ %{ENV:BASE}/index.php [L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    <IfModule mod_alias.c>
+        # Fallback si le module de réécriture d'Apache (mod_rewrite) n'est pas activé
+        RedirectMatch 302 ^/$ /index.php/
+    </IfModule>
+</IfModule>
