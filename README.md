@@ -27,7 +27,7 @@ openapi-generator-cli generate \
   -i C:\xampp\htdocs\kurnaval_2_rio_web\var\openapi.yaml \
   -g dart-dio \
   -o C:\Users\enzom\project\kurnaval_2_rio\lib\api_client \
-  --additional-properties=pubName=event_api
+  --additional-properties=pubName=kurnaval_2_rio_api
 ```
 
 Si vous voulez un nom de package plus propre, vous pouvez aussi utiliser :
